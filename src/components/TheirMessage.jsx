@@ -1,6 +1,16 @@
+
+/*
+    A message component specific to their message.
+    My and thiers are seperate for formatting.
+
+    Can handle photos or text
+    Input: last message and message object
+*/
 const TheirMessage = ({lastMessage, message}) => {
+    // Determine if this is the first message from the user.
     const isFirstMessageByUser = !lastMessage || lastMessage.sender.username !== message.sender.username;
     return (
+        // Return a message row with the user avatar on the first message, and the message or image following.
         <div className="message-row">
             {isFirstMessageByUser && (
                 <div

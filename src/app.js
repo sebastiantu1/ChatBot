@@ -1,7 +1,11 @@
-import { ChatEngine } from 'react-chat-engine';
-import ChatFeed from './components/ChatFeed';
+import { ChatEngine } from 'react-chat-engine'; // Chat Engine + React API
+import ChatFeed from './components/ChatFeed';   
 import './app.css';
 
+/*
+    The App component returns a ChatEngine component,
+    with chat info like projectID, admin user info.
+ */
 const App = () => {
     return (
         <ChatEngine
@@ -9,7 +13,7 @@ const App = () => {
             projectID="bd7ec66b-be09-4876-8971-a0062e26c16b"
             userName="Sebastiantu"
             userSecret="12345"
-            renderChatFeed={(chatAppProps) => <ChatFeed {...chatAppProps} />}
+            renderChatFeed={(chatAppProps) => <ChatFeed {...chatAppProps} />} // Overridden Chat Feed component
         />
     )
 }
