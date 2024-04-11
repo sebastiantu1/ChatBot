@@ -1,39 +1,30 @@
+const TheirMessage = ({ lastMessage, message }) => {
+  const isFirstMessageByUser = !lastMessage || lastMessage.sender.username !== message.sender.username;
 
-/*
-    A message component specific to their message.
-    My and thiers are seperate for formatting.
-
-    Can handle photos or text
-    Input: last message and message object
-*/
-const TheirMessage = ({lastMessage, message}) => {
-    // Determine if this is the first message from the user.
-    const isFirstMessageByUser = !lastMessage || lastMessage.sender.username !== message.sender.username;
-    return (
-        // Return a message row with the user avatar on the first message, and the message or image following.
-        <div className="message-row">
-            {isFirstMessageByUser && (
-                <div
-                    className="message-avatar"
-                    style={{backgroundImage: `url(${message?.sender?.avatar})`}}
-                />
-            )}
-            {message?.attachments?.length > 0
-                ? (
-                <img
-                    src={message.attachments[0].file}
-                    alt="message-attachment"
-                    className="message-image"
-                    style={{ marginLeft : isFirstMessageByUser ? '4px' : '48px' }}
-                />
-                ) : (
-                    <div className="message" style={{ float: 'left', backgroundColor: '#CABCDC', marginLeft : isFirstMessageByUser ? '4px' : '48px' }}>
-                        {message.text}
-                    </div> 
-                )
-            }
-        </div>
-    )
-}
+  return (
+    <div className="message-row">
+      {isFirstMessageByUser && (
+        <div
+          className="message-avatar"
+          style={{ backgroundImage: message.sender && `url(${message.sender.avatar})` }}
+        />
+      )}
+      {message.attachments && message.attachments.length > 0
+        ? (
+          <img
+            src={message.attachments[0].file}
+            alt="message-attachment"
+            className="message-image"
+            style={{ marginLeft: isFirstMessageByUser ? '4px' : '48px' }}
+          />
+        )
+        : (
+          <div className="message" style={{ float: 'left', backgroundColor: '#CABCDC', marginLeft: isFirstMessageByUser ? '4px' : '48px' }}>
+            {message.text}
+          </div>
+        )}
+    </div>
+  );
+};
 
 export default TheirMessage;
